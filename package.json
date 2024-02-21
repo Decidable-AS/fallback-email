@@ -1,0 +1,12 @@
+{
+  "name": "fallback-email",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/react": "^18.2.57",
+    "prettier": "^3.2.5",
+    "resend": "^3.2.0",
+    "typescript": "^5.0.0"
+  }
+}
