@@ -3,7 +3,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "bun run build.mjs",
+    "build": "bunx tsc",
     "prepublishOnly": "bun run build"
   },
   "files": [
