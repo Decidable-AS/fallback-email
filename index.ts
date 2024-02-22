@@ -23,7 +23,7 @@ type SendEmailInput = {
 
 type CustomProvider = {
 	type: "custom";
-	sendEmail: <T = any>(email: SendEmailInput) => Promise<T>;
+	sendEmail: (email: SendEmailInput) => Promise<any>;
 };
 
 type ResendProvider = {
