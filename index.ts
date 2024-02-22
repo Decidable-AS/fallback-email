@@ -1,4 +1,6 @@
 import type { Resend } from "resend";
+import type { ServerClient } from "postmark";
+import { renderToStaticMarkup } from "react-dom/server";
 
 type SendEmailInput = {
 	to: string | string[];
@@ -29,7 +31,12 @@ type ResendProvider = {
 	resend: Resend;
 };
 
-type Provider = CustomProvider | ResendProvider;
+type PostmarkProvider = {
+  type: "postmark";
+  postmark: ServerClient;
+};
+
+type Provider = CustomProvider | ResendProvider | PostmarkProvider;
 
 export function createClient(providers: Provider[]) {
 	return {
@@ -71,6 +78,34 @@ export function createClient(providers: Provider[]) {
 								result = res;
 							}
 							break;
+            case "postmark":
+              {
+                const To = Array.isArray(email.to) ? email.to.join(",") : email.to;
+                const Cc = Array.isArray(email.cc) ? email.cc.join(",") : email.cc;
+                const Bcc = Array.isArray(email.bcc) ? email.bcc.join(",") : email.bcc;
+                const ReplyTo = Array.isArray(email.replyTo) ? email.replyTo.join(",") : email.replyTo;
+                const res = await provider.postmark.sendEmail({
+                  From: email.from,
+                  To,
+                  Cc,
+                  Bcc,
+                  ReplyTo,
+                  Subject: email.subject,
+
+                  ...("html" in email && email.html
+                    ? { HtmlBody: email.html }
+                    : "text" in email && email.text
+                      ? { TextBody: email.text }
+                      : "react" in email && email.react
+                        ? { HtmlBody: renderToStaticMarkup(email.react) }
+                        : { TextBody: "" }),
+                });
+                if (res.ErrorCode) {
+                  throw new Error(res.Message);
+                }
+                result = res;
+              }
+              break;
 						default:
 							providerType satisfies never;
 							throw new Error("Invalid provider type");

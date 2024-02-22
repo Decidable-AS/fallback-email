@@ -5,8 +5,13 @@
   "devDependencies": {
     "@types/bun": "latest",
     "@types/react": "^18.2.57",
+    "@types/react-dom": "^18.2.19",
+    "postmark": "^4.0.2",
     "prettier": "^3.2.5",
     "resend": "^3.2.0",
     "typescript": "^5.0.0"
+  },
+  "peerDependencies": {
+    "react-dom": "^18.2.0"
   }
 }
