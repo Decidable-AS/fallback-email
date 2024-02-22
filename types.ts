@@ -31,8 +31,8 @@ export type ResendProvider = {
 };
 
 export type PostmarkProvider = {
-  type: "postmark";
-  postmark: ServerClient;
+	type: "postmark";
+	postmark: ServerClient;
 };
 
 export type Provider = CustomProvider | ResendProvider | PostmarkProvider;

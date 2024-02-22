@@ -1,8 +1,6 @@
-
 import type { Provider, SendEmailInput } from "./types";
 import { sendEmail as sendEmailResend } from "./adapters/resend";
 import { sendEmail as sendEmailPostmark } from "./adapters/postmark";
-
 
 export function createClient(providers: Provider[]) {
 	return {
@@ -20,9 +18,9 @@ export function createClient(providers: Provider[]) {
 								}
 								result = {
 									type: providerType,
-                  index: providers.indexOf(provider),
-                  custom: res
-                };
+									index: providers.indexOf(provider),
+									custom: res,
+								};
 							}
 							break;
 
@@ -34,25 +32,25 @@ export function createClient(providers: Provider[]) {
 								}
 								result = {
 									type: providerType,
-                  index: providers.indexOf(provider),
-                  resend: res as any
-                };
+									index: providers.indexOf(provider),
+									resend: res as any,
+								};
 							}
 							break;
 
-            case "postmark":
-              {
-                const res = sendEmailPostmark(provider, email);
-                if (res.ErrorCode) {
-                  throw new Error(res.Message);
-                }
-                result = {
+						case "postmark":
+							{
+								const res = sendEmailPostmark(provider, email);
+								if (res.ErrorCode) {
+									throw new Error(res.Message);
+								}
+								result = {
 									type: providerType,
-                  index: providers.indexOf(provider),
-                  postmark: res as any
-                };
-              }
-              break;
+									index: providers.indexOf(provider),
+									postmark: res as any,
+								};
+							}
+							break;
 
 						default:
 							providerType satisfies never;
