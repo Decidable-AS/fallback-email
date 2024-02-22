@@ -55,6 +55,7 @@ export function createClient(providers: Provider[]) {
 								result = res;
 							}
 							break;
+
 						case "resend":
 							{
 								const res = await provider.resend.emails.send({
@@ -78,6 +79,7 @@ export function createClient(providers: Provider[]) {
 								result = res;
 							}
 							break;
+
             case "postmark":
               {
                 const To = Array.isArray(email.to) ? email.to.join(",") : email.to;
@@ -106,6 +108,7 @@ export function createClient(providers: Provider[]) {
                 result = res;
               }
               break;
+
 						default:
 							providerType satisfies never;
 							throw new Error("Invalid provider type");
