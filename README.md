@@ -5,27 +5,27 @@ VERY ALPHA
 ## Example usage
 
 ```javascript
-import { createClient } from "fallback-email"
-import { Resend } from "resend"
-import { ServerClient } from "postmark"
+import { createClient } from "fallback-email";
+import { Resend } from "resend";
+import { ServerClient } from "postmark";
 
 export const emailClient = createClient([
 	{
 		type: "resend",
-		resend: new Resend()
+		resend: new Resend(),
 	},
 	{
 		type: "postmark",
-		postmark: new ServerClient("serverToken")
-	}
+		postmark: new ServerClient("serverToken"),
+	},
 	{
 		type: "custom",
 		async sendEmail(email) {
 			// your implementation
-			return "Some value"
+			return "Some value";
 		},
-	}
-])
+	},
+]);
 
 const res = await emailClient.sendEmail({
 	from: "test",
@@ -34,5 +34,5 @@ const res = await emailClient.sendEmail({
 	text: "test",
 });
 
-console.log("Used provider", res.index)
+console.log("Used provider", res.index);
 ```
