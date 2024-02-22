@@ -52,7 +52,10 @@ export function createClient(providers: Provider[]) {
 								if (res.error) {
 									throw new Error(res.error);
 								}
-								result = res;
+								result = {
+                  index: providers.indexOf(provider),
+                  custom: res
+                };
 							}
 							break;
 
@@ -76,7 +79,10 @@ export function createClient(providers: Provider[]) {
 								if (res.error) {
 									throw res.error;
 								}
-								result = res;
+								result = {
+                  index: providers.indexOf(provider),
+                  resend: res
+                };
 							}
 							break;
 
@@ -105,7 +111,10 @@ export function createClient(providers: Provider[]) {
                 if (res.ErrorCode) {
                   throw new Error(res.Message);
                 }
-                result = res;
+                result = {
+                  index: providers.indexOf(provider),
+                  postmark: res
+                };
               }
               break;
 
