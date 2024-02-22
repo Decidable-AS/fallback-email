@@ -5,7 +5,8 @@
 	"types": "dist/index.d.ts",
 	"scripts": {
 		"build": "bunx tsc",
-		"prepublishOnly": "bun run build"
+		"prepublishOnly": "bun run build",
+		"format:check": "prettier --check ."
 	},
 	"files": [
 		"dist"
