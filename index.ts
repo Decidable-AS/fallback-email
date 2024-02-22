@@ -26,9 +26,9 @@ export function createClient(providers: Provider[]) {
 
 						case "resend":
 							{
-								const res = sendEmailResend(provider, email);
+								const res = await sendEmailResend(provider, email);
 								if (res.error) {
-									throw new Error(res.error);
+									throw res.error;
 								}
 								result = {
 									type: providerType,
@@ -40,14 +40,14 @@ export function createClient(providers: Provider[]) {
 
 						case "postmark":
 							{
-								const res = sendEmailPostmark(provider, email);
+								const res = await sendEmailPostmark(provider, email);
 								if (res.ErrorCode) {
 									throw new Error(res.Message);
 								}
 								result = {
 									type: providerType,
 									index: providers.indexOf(provider),
-									postmark: res as any,
+									postmark: res,
 								};
 							}
 							break;

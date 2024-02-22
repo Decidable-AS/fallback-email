@@ -27,8 +27,8 @@ function createPayloadFromEmailInput(
 export function sendEmail(
 	postmarkProvider: PostmarkProvider,
 	email: SendEmailInput
-) {
+): ReturnType<ServerClient["sendEmail"]> {
 	return postmarkProvider.postmark.sendEmail(
 		createPayloadFromEmailInput(email)
-	) as any;
+	);
 }

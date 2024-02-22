@@ -21,11 +21,9 @@ function createPayloadFromEmailInput(
 	};
 }
 
-export function sendEmail(
+export async function sendEmail(
 	resendProvider: ResendProvider,
 	email: SendEmailInput
-) {
-	return resendProvider.resend.emails.send(
-		createPayloadFromEmailInput(email)
-	) as any;
+): ReturnType<Resend["emails"]["send"]> {
+	return resendProvider.resend.emails.send(createPayloadFromEmailInput(email));
 }
