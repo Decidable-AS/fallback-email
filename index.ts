@@ -122,6 +122,9 @@ export function createClient(providers: Provider[]) {
 							providerType satisfies never;
 							throw new Error("Invalid provider type");
 					}
+					if (result) {
+						break;
+					}
 				} catch (error) {
 					console.error(error);
 				}
