@@ -81,7 +81,7 @@ export function createClient(providers: Provider[]) {
 								}
 								result = {
                   index: providers.indexOf(provider),
-                  resend: res
+                  resend: res as any
                 };
 							}
 							break;
@@ -113,7 +113,7 @@ export function createClient(providers: Provider[]) {
                 }
                 result = {
                   index: providers.indexOf(provider),
-                  postmark: res
+                  postmark: res as any
                 };
               }
               break;
