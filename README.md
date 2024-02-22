@@ -2,6 +2,18 @@
 
 VERY ALPHA
 
+I have never made an NPM pacakge before, so please contribute!
+
+## What is it?
+
+A unified email client that can use multiple providers. If one provider fails, it will try the next one. If all providers fail, it will throw an error.
+
+## Thing to notice
+
+* Does not support attachments yet.
+* Only includes a few providers by default yet. (Please PR if you want to add more)
+* API may change a lot until v1.0.0
+
 ## Example usage
 
 ```javascript
